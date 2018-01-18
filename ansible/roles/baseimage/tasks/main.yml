@@ -1,0 +1,14 @@
+- name: Install Apache2
+  yum: name=apache2 state=latest update_cache=yes
+
+- name: Enable Apache2
+  service: name=apache2 state=started enabled=yes
+  
+- name: Install Tomcat
+  yum: name=tomcat state=latest update_cache=yes
+
+- name: Enable Tomcat
+  service: name=tomcat state=started enabled=yes
+  
+- name: Install OpenJDK
+  yum: name=open-jdk state=latest update_cache=yes

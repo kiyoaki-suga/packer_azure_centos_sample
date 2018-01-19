@@ -2,50 +2,74 @@
   "variables": {
     "client_id": "",
     "client_secret": "",
-    "resource_group": "",
-    "storage_account": "",
     "subscription_id": "",
     "tenant_id": ""
   },
-  "builders": [{
-    "type": "azure-arm",
+  "builders": [
+    {
+      "type": "azure-arm",
 
-    "client_id": "{{user `client_id`}}",
-    "client_secret": "{{user `client_secret`}}",
-    "resource_group_name": "{{user `resource_group`}}",
-    "storage_account": "{{user `storage_account`}}",
-    "subscription_id": "{{user `subscription_id`}}",
-    "tenant_id": "{{user `tenant_id`}}",
+      "client_id": "{{user `client_id`}}",
+      "client_secret": "{{user `client_secret`}}",
+      "subscription_id": "{{user `subscription_id`}}",
+      "tenant_id": "{{user `tenant_id`}}",
 
-    "capture_container_name": "images",
-    "capture_name_prefix": "packer",
+      "managed_image_resource_group_name": "tf_test_01_rg",
+      "managed_image_name": "centos74image",
 
-    "image_publisher": "OpenLogic",
-    "image_offer": "CentOS",
-    "image_sku": "7.4",
+      "image_publisher": "OpenLogic",
+      "image_offer": "CentOS",
+      "image_sku": "7.4",
 
-    "location": "Japan West",
-    "vm_size": "Standard_D1_v2",
-    "os_type": "Linux"
-  }],
-  "provisioners": [{
-    "type": "shell",
+"centos.json" 51L, 1088C                                      1,1           Top
+{
+  "variables": {
+    "client_id": "",
+    "client_secret": "",
+    "subscription_id": "",
+    "tenant_id": ""
+  },
+  "builders": [
+    {
+      "type": "azure-arm",
+
+      "client_id": "{{user `client_id`}}",
+      "client_secret": "{{user `client_secret`}}",
+      "subscription_id": "{{user `subscription_id`}}",
+      "tenant_id": "{{user `tenant_id`}}",
+
+      "managed_image_resource_group_name": "tf_test_01_rg",
+      "managed_image_name": "centos74image",
+
+      "image_publisher": "OpenLogic",
+      "image_offer": "CentOS",
+      "image_sku": "7.4",
+
+      "location": "Japan West",
+      "vm_size": "Standard_D1_v2",
+      "os_type": "Linux"
+  }
+],
+  "provisioners": [
+    {
+      "type": "shell",
       "scripts": [
         "../script/centos/provision.sh"
-    ]
-  },
+      ]
+    },
   {
-    "type": "ansible-local",
-    "playbook_file": "../ansible/baseimage.yml",
-    "inventory_file": "../ansible/hosts",
-    "role_paths": [
+      "type": "ansible-local",
+      "playbook_file": "../ansible/baseimage.yml",
+      "inventory_file": "../ansible/hosts",
+      "role_paths": [
       "../ansible/roles/baseimage"
     ]
   },
   {
-    "type": "shell",
+      "type": "shell",
       "scripts": [
         "../script/centos/deprovision.sh"
-    ]
-  }]
+      ]
+  }
+  ]
 }

@@ -1,3 +1,19 @@
+- name: System Update
+  command: yum -y update
+
+- name: install ibus-kkc
+  command: yum -y install ibus-kkc vlgothic-*
+
+- name: set timezone to Asia/Tokyo
+  timezone:
+    name: Asia/Tokyo
+
+- name: change locale
+  command: localectl set-locale LANG=ja_JP.UTF-8
+
+- name: Keyboad
+  command: localectl set-keymap jp106
+
 - name: Install Java 1.8
   yum: name=java-1.8.0-openjdk state=present update_cache=yes
 

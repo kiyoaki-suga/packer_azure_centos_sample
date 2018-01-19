@@ -14,17 +14,17 @@
 - name: Keyboad
   command: localectl set-keymap jp106
 
-- name: Install Java 1.8
+- name: Install Java
   yum: name=java-1.8.0-openjdk state=present update_cache=yes
 
-- name: install apache24
+- name: install apache
   yum: name=httpd state=present update_cache=yes
 
 - name: start httpd service
   service: name=httpd state=started enabled=yes
 
-- name: Install tomcat8
+- name: Install tomcat
   yum: name=tomcat state=latest update_cache=yes
 
-- name: Enable Tomcat8
+- name: Enable Tomcat
   service: name=tomcat state=started enabled=yes

@@ -1,8 +1,6 @@
 {
     "client_id": "your_oauth_client_id",
     "client_secret": "your_oauth_client_secret",
-    "resource_group": "your_resource_group",
-    "storage_account": "your_storage_account",
     "subscription_id": "your_subscription_id",
     "tenant_id": "your_tenant_id"
 }

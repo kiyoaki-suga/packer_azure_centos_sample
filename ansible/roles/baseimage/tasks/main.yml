@@ -1,14 +1,14 @@
-- name: Install Apache2
-  yum: name=apache2 state=latest update_cache=yes
+- name: Install Java 1.8
+  yum: name=java-1.8.0-openjdk state=present update_cache=yes
 
-- name: Enable Apache2
-  service: name=apache2 state=started enabled=yes
-  
-- name: Install Tomcat
+- name: install apache24
+  yum: name=httpd state=present update_cache=yes
+
+- name: start httpd service
+  service: name=httpd state=started enabled=yes
+
+- name: Install tomcat8
   yum: name=tomcat state=latest update_cache=yes
 
-- name: Enable Tomcat
+- name: Enable Tomcat8
   service: name=tomcat state=started enabled=yes
-  
-- name: Install OpenJDK
-  yum: name=open-jdk state=latest update_cache=yes

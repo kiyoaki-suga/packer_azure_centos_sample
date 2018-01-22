@@ -14,7 +14,7 @@
       "subscription_id": "{{user `subscription_id`}}",
       "tenant_id": "{{user `tenant_id`}}",
 
-      "managed_image_resource_group_name": "tf_test_01_rg",
+      "managed_image_resource_group_name": "output_your_resourcegroup",
       "managed_image_name": "centos74image",
 
       "image_publisher": "OpenLogic",

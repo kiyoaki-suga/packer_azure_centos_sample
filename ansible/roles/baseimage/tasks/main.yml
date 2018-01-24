@@ -1,6 +1,3 @@
-- name: System Update
-  command: yum -y update
-
 - name: install ibus-kkc
   command: yum -y install ibus-kkc vlgothic-*
 

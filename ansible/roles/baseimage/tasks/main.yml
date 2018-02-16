@@ -17,6 +17,25 @@
 - name: install apache
   yum: name=httpd state=present update_cache=yes
 
+- name: Add index.html
+  file:
+    path: /var/www/html/index.html
+    state: touch
+    mode: 0644
+
+- name: Edit index.html
+  blockinfile:
+    dest: /var/www/html/index.html
+    block: |
+       <html>
+       <head>
+       <title>Index Sample</title>
+       </head>
+       <body>
+       <p><font size="7" color="#0000ff">It's works!</font></p>
+       </body>
+       </html>
+
 - name: start httpd service
   service: name=httpd state=started enabled=yes
 

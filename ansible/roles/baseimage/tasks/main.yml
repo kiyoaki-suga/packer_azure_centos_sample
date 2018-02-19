@@ -1,3 +1,7 @@
+- selinux:
+    policy: targeted
+    state: permissive
+
 - name: install ibus-kkc
   command: yum -y install ibus-kkc vlgothic-*
 
@@ -11,10 +15,10 @@
 - name: Keyboad
   command: localectl set-keymap jp106
 
-- name: Install Java
+- name: Install Java 1.8
   yum: name=java-1.8.0-openjdk state=present update_cache=yes
 
-- name: install apache
+- name: install apache24
   yum: name=httpd state=present update_cache=yes
 
 - name: Add index.html
@@ -39,8 +43,16 @@
 - name: start httpd service
   service: name=httpd state=started enabled=yes
 
-- name: Install tomcat
+- name: Install tomcat7
   yum: name=tomcat state=latest update_cache=yes
 
-- name: Enable Tomcat
+- name: Enable Tomcat7
   service: name=tomcat state=started enabled=yes
+  
+- name: install yum repository
+  yum: name=https://download.postgresql.org/pub/repos/yum/9.6/redhat/rhel-7-x86_64/pgdg-centos96-9.6-3.noarch.rpm
+
+- name: Install PostgreSQL Client
+  yum: name={{ item }} state=installed
+  with_items:
+    - postgresql96
